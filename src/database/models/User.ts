@@ -10,16 +10,35 @@ class User {
 
     @Column()    
         cpf: string;
-
+    
     @Column('date')
         birth: Date;
     
     @Column()
+        email: string;
+    
+    @Column('boolean')
+        qualified: boolean;
+
+    @Column()
         cep: string;
     
     @Column()
-        email: string;
+        neighbordhood:string;
     
+    @Column()
+        street: string;
+
+    @Column()
+        complement: string;
+
+    @Column()
+        city: string;
+
+
+    @Column()
+        uf: string;
+     
     @Column()
         password: string;
 
