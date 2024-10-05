@@ -19,6 +19,9 @@ class Car {
 
     @Column('simple-json')    
         accessories: {name: string}[];
+    
+    @Column()
+    numberOfPassengers: number;
 
     @CreateDateColumn()
         created_at: Date;

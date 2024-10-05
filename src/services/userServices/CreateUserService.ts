@@ -1,7 +1,7 @@
-import User from '../database/models/User';
-import { AppDataSource } from '../database/data-source';
-import { GetCepService } from './GetCepService';
-import CreateUserDTO from '../dtos/CreateUserDTO';
+import User from '../../database/models/User';
+import { AppDataSource } from '../../database/data-source';
+import { GetCepService } from '../GetCepService';
+import CreateUserDTO from '../../dtos/CreateUserDTO';
 
 
 
