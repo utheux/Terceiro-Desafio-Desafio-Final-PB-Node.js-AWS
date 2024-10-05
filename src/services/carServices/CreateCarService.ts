@@ -6,20 +6,20 @@ interface IRequestCar{
     color: string;
     year: number;
     valuePerDay: number;
-    accessories: {name: string}[];
+    acessories: {name: string}[];
     numberOfPassengers: number;
 
 }
 
 class CreateCarService {
-    public async execute({model, color, year, valuePerDay, accessories, numberOfPassengers}: IRequestCar): Promise<Car>{
+    public async execute({model, color, year, valuePerDay, acessories, numberOfPassengers}: IRequestCar): Promise<Car>{
         const carRepository = AppDataSource.getRepository(Car);
         const car = await carRepository.create({
             model,
             color,
             year,
             valuePerDay,
-            accessories,
+            acessories,
             numberOfPassengers
         });
 

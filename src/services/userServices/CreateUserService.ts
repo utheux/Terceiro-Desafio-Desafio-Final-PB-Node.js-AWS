@@ -35,6 +35,9 @@ class CreateUserService {
             throw new Error('Endereço não encontrado para o CEP informado');
         }
 
+        const dateNow = Date.now();
+        const YearUser = dateNow - birth.getTime();
+
         const user = await userRepository.create({
             name, 
             cpf,

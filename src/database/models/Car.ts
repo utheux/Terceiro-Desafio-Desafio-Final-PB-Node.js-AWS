@@ -18,7 +18,7 @@ class Car {
         valuePerDay: number;
 
     @Column('simple-json')    
-        accessories: {name: string}[];
+        acessories: {name: string}[];
     
     @Column()
     numberOfPassengers: number;
