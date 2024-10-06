@@ -1,6 +1,6 @@
-import { request } from "https";
-import Car from "../../database/models/Car";
-import { AppDataSource } from "../../database/data-source";
+import Car from '../../database/models/Car';
+import { AppDataSource } from '../../database/data-source';
+import CarDTO from '../../dtos/CarDTO';
 
 interface IRequestCarUpdate{
     id: number;
@@ -14,7 +14,7 @@ interface IRequestCarUpdate{
 }
 
 class UpdateCarService {
-    public async execute({id, model, color, year, valuePerDay, acessories, numberOfPassengers}: IRequestCarUpdate): Promise<Car>{
+    public async execute({id, model, color, year, valuePerDay, acessories, numberOfPassengers}: IRequestCarUpdate): Promise<CarDTO>{
             const carRepository = AppDataSource.getRepository(Car);
             const car = await carRepository.findOneBy({id})
 
@@ -31,7 +31,7 @@ class UpdateCarService {
 
             await carRepository.save(car);
 
-            return car;
+            return new CarDTO(car);
 
         }
 }

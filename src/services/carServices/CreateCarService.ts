@@ -1,5 +1,6 @@
-import { AppDataSource } from "../../database/data-source";
-import Car from "../../database/models/Car";
+import { AppDataSource } from '../../database/data-source';
+import Car from '../../database/models/Car';
+import CarDTO from '../../dtos/CarDTO';
 
 interface IRequestCar{
     model: string;
@@ -12,7 +13,7 @@ interface IRequestCar{
 }
 
 class CreateCarService {
-    public async execute({model, color, year, valuePerDay, acessories, numberOfPassengers}: IRequestCar): Promise<Car>{
+    public async execute({model, color, year, valuePerDay, acessories, numberOfPassengers}: IRequestCar): Promise<CarDTO>{
         const carRepository = AppDataSource.getRepository(Car);
         const car = await carRepository.create({
             model,
@@ -25,7 +26,7 @@ class CreateCarService {
 
         await carRepository.save(car);
 
-        return car;
+        return new CarDTO(car);
     }
 }
 
