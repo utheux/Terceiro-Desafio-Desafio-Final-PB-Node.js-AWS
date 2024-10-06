@@ -15,25 +15,25 @@ interface IRequestCarUpdate{
 
 class UpdateCarService {
     public async execute({id, model, color, year, valuePerDay, acessories, numberOfPassengers}: IRequestCarUpdate): Promise<CarDTO>{
-            const carRepository = AppDataSource.getRepository(Car);
-            const car = await carRepository.findOneBy({id})
+        const carRepository = AppDataSource.getRepository(Car);
+        const car = await carRepository.findOneBy({id});
 
-            if(!car){
-                throw new Error('Car not found')
-            }
-
-            car.model = model;
-            car.color = color;
-            car.year = year;
-            car.valuePerDay = valuePerDay;
-            car.acessories = acessories;
-            car.numberOfPassengers = numberOfPassengers;
-
-            await carRepository.save(car);
-
-            return new CarDTO(car);
-
+        if(!car){
+            throw new Error('Car not found');
         }
+
+        car.model = model;
+        car.color = color;
+        car.year = year;
+        car.valuePerDay = valuePerDay;
+        car.acessories = acessories;
+        car.numberOfPassengers = numberOfPassengers;
+
+        await carRepository.save(car);
+
+        return new CarDTO(car);
+
+    }
 }
 
 export default UpdateCarService;

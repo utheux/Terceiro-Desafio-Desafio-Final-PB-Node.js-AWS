@@ -1,5 +1,5 @@
-import { Router } from "express";
-import CarController from "../controllers/CarController";
+import { Router } from 'express';
+import CarController from '../controllers/CarController';
 
 const routerCar = Router();
 const carController = new CarController();

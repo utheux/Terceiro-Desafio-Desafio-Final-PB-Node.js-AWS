@@ -40,7 +40,7 @@ class User {
         uf: string;
      
     @Column()
-        password: string;
+        hashPassword: string;
 
     @CreateDateColumn()
         created_at: Date;

@@ -2,7 +2,7 @@ import User from '../../database/models/User';
 import { AppDataSource } from '../../database/data-source';
 import { GetCepService } from '../GetCepService';
 import CreateUserDTO from '../../dtos/UserDTO';
-
+import { hash } from 'bcryptjs';
 
 
 interface IRequestUser {
@@ -25,6 +25,13 @@ class CreateUserService {
     }: IRequestUser): Promise<CreateUserDTO> {
         const userRepository = AppDataSource.getRepository(User);
 
+        const userInDb = await userRepository.findOne({where: {email}});
+        if(userInDb) {
+            throw new Error('already registered user');
+        }
+
+        const hashPassword = await hash(password, 8);
+
         const getCepService = new GetCepService();
 
         const cepSemCrase = cep.replace('-', '');
@@ -32,11 +39,8 @@ class CreateUserService {
         const address = await getCepService.execute(cepSemCrase);
 
         if (!address) {
-            throw new Error('Endereço não encontrado para o CEP informado');
+            throw new Error('Address not found for the zip code entered');
         }
-
-        const dateNow = Date.now();
-        const YearUser = dateNow - birth.getTime();
 
         const user = await userRepository.create({
             name, 
@@ -50,7 +54,7 @@ class CreateUserService {
             complement: address.complemento,
             city: address.localidade,
             uf: address.uf,
-            password
+            hashPassword
         });
 
         const userCadastrado = await userRepository.save(user);

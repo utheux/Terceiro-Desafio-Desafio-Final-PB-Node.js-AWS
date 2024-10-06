@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import CreateCarService from "../services/carServices/CreateCarService";
-import UpdateCarService from "../services/carServices/UpdateCarService";
+import { Request, Response } from 'express';
+import CreateCarService from '../services/carServices/CreateCarService';
+import UpdateCarService from '../services/carServices/UpdateCarService';
 
 class CarController {
     public async create(req: Request, res: Response): Promise<Response> {
