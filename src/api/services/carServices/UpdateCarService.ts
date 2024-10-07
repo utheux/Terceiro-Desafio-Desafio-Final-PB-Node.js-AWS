@@ -1,5 +1,5 @@
-import Car from '../../database/models/Car';
-import { AppDataSource } from '../../database/data-source';
+import Car from '../../../database/models/Car';
+import { AppDataSource } from '../../../database/data-source';
 import CarDTO from '../../dtos/CarDTO';
 
 interface IRequestCarUpdate{

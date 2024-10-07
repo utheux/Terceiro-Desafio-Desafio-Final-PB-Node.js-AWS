@@ -1,5 +1,5 @@
-import User from '../../database/models/User';
-import { AppDataSource } from '../../database/data-source';
+import User from '../../../database/models/User';
+import { AppDataSource } from '../../../database/data-source';
 import { GetCepService } from '../GetCepService';
 import CreateUserDTO from '../../dtos/UserDTO';
 import { hash } from 'bcryptjs';
@@ -34,9 +34,9 @@ class CreateUserService {
 
         const getCepService = new GetCepService();
 
-        const cepSemCrase = cep.replace('-', '');
+        const cepWithoutCrase = cep.replace('-', '');
 
-        const address = await getCepService.execute(cepSemCrase);
+        const address = await getCepService.execute(cepWithoutCrase);
 
         if (!address) {
             throw new Error('Address not found for the zip code entered');
@@ -57,9 +57,9 @@ class CreateUserService {
             hashPassword
         });
 
-        const userCadastrado = await userRepository.save(user);
+        const registeredUser = await userRepository.save(user);
 
-        return new CreateUserDTO(userCadastrado);
+        return new CreateUserDTO(registeredUser);
 
     }
 }

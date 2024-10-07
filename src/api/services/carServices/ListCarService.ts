@@ -1,5 +1,5 @@
-import { AppDataSource } from '../../database/data-source';
-import Car from '../../database/models/Car';
+import { AppDataSource } from '../../../database/data-source';
+import Car from '../../../database/models/Car';
 import CarDTO from '../../dtos/CarDTO';
 
 class ListCarService {

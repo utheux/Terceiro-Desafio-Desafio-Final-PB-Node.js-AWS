@@ -1,5 +1,5 @@
-import { AppDataSource } from '../../database/data-source';
-import User from '../../database/models/User';
+import { AppDataSource } from '../../../database/data-source';
+import User from '../../../database/models/User';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import JsonSecret from '../../config/JsonSecret';

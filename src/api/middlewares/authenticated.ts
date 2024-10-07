@@ -5,7 +5,7 @@ const authenticated = async (req, res, next) => {
     const token = req.headers.authorization;
 
     if (!token) {  
-        return res.status(401).send('Access token não informado');
+        return res.status(401).send('Access token not provided');
     }
 
     const [, accessToken] = token.split(' ');
@@ -24,12 +24,12 @@ const authenticated = async (req, res, next) => {
 
             return next();
         } else {
-            return res.status(401).send('Token inválido');
+            return res.status(401).send('invalid token');
         }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-        return res.status(401).send('Usuário não autorizado');
+        return res.status(401).send('Unauthorized user');
     }
 };
 

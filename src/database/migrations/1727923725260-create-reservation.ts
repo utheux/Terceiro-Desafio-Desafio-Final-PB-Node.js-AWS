@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateReservation1727923725260 implements MigrationInterface {
 
@@ -22,6 +22,14 @@ export class CreateReservation1727923725260 implements MigrationInterface {
                         type: 'date'
                     },
                     {
+                        name: 'finalValue',
+                        type: 'number'
+                    },
+                    {
+                        name: 'userId',
+                        type: 'int',
+                    },
+                    {
                         name: 'carId',
                         type: 'int',
                     },
@@ -40,32 +48,12 @@ export class CreateReservation1727923725260 implements MigrationInterface {
             })
         );
 
-        await queryRunner.createForeignKey(
-            'reservations',
-            new TableForeignKey({
-                columnNames: ['carId'],
-                referencedColumnNames: ['id'],
-                referencedTableName: 'cars',
-                onDelete: 'CASCADE',      
-            })
-        );
+    
     }
 
 
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        const table = await queryRunner.getTable('reservations');
-
-        if (!table) {
-            throw new Error('Table "reservations" not found');
-        }
-
-        const foreignKey = table.foreignKeys.find(fk => fk.columnNames.indexOf('carId') !== -1);
-
-        if (foreignKey) {
-            await queryRunner.dropForeignKey('reservations', foreignKey);
-        }
-
         await queryRunner.dropTable('reservations');
         
     }

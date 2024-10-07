@@ -1,8 +1,8 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import Car from './Car';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
 
 @Entity('reservations')
-class Resevation {
+class Reservation {
     @PrimaryGeneratedColumn()
         id: number;
     
@@ -11,10 +11,15 @@ class Resevation {
     
     @Column('date')
         endDate: Date;
+
+    @Column('decimal')
+        finalValue: number;
+
+    @Column()
+        userId: number;
     
-    @OneToOne(() => Car)
-    @JoinColumn({name: 'car_id'})
-        car: Car;
+    @Column()
+        carId: number;
     
     @CreateDateColumn()
         created_at: Date;
@@ -24,4 +29,4 @@ class Resevation {
 
 }
 
-export default Resevation;
+export default Reservation;

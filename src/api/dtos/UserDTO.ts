@@ -1,4 +1,4 @@
-import User from '../database/models/User';
+import User from '../../database/models/User';
 
 export default class CreateUserDTO {
     id: number;

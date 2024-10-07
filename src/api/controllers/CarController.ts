@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import CreateCarService from '../services/carServices/CreateCarService';
 import UpdateCarService from '../services/carServices/UpdateCarService';
 import ListCarService from '../services/carServices/ListCarService';
+import DeleteCarService from '../services/carServices/DeleteCarService';
+import ShowCarIdService from '../services/carServices/ShowCarIdService';
 
 class CarController {
     public async create(request: Request, response: Response): Promise<Response> {
@@ -42,6 +44,36 @@ class CarController {
         } catch(error) {
             return response.status(400).json({erro: error.message});
 
+        }
+    }
+
+    public async delete(request: Request, response: Response): Promise<Response> {
+        try {
+            const {id} = request.params;
+            const deleteCar = new DeleteCarService();
+
+            await deleteCar.execute(Number(id));
+
+            return response.status(204).send();
+
+        } catch(error) {
+            return response.status(400).json({erro: error.message});
+        }
+    }
+
+    public async getById(request: Request, response: Response): Promise<Response> {
+        try {
+            const {id} = request.params;
+            const getCar = new ShowCarIdService();
+
+            const car = await getCar.execute(Number(id));
+
+            return response.status(200).json(car);
+
+
+
+        } catch(error) {
+            return response.status(400).json({erro: error.message});
         }
     }
 }

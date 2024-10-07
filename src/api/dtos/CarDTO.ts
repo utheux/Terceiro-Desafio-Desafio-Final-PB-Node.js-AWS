@@ -1,6 +1,7 @@
-import Car from '../database/models/Car';
+import Car from '../../database/models/Car';
 
 export default class CreateCarDTO {
+    id: number;
     model: string;
     color: string;
     year: number;
@@ -9,6 +10,7 @@ export default class CreateCarDTO {
     numberOfPassengers: number;
 
     constructor(car: Car) {
+        this.id = car.id;
         this.model = car.model;
         this.color = car.color;
         this.year = car.year;
