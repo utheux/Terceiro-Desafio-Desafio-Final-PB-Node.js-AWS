@@ -35,7 +35,7 @@ class AuthService {
             id: userDB.id,
             email: userDB.email,
         }, jsonSecret.secret, {
-            expiresIn: 86400
+            expiresIn: 43200
         });
 
         return {accessToken};

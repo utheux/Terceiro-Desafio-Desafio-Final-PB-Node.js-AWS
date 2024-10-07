@@ -21,7 +21,7 @@ class Car {
         acessories: {name: string}[];
     
     @Column()
-    numberOfPassengers: number;
+        numberOfPassengers: number;
 
     @CreateDateColumn()
         created_at: Date;

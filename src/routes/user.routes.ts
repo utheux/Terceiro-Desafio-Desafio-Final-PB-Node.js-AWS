@@ -1,12 +1,15 @@
 import { Router } from 'express';
 import UserController from '../controllers/UserController';
-import AuthController from '../controllers/AuthController';
+import authenticated from '../middlewares/authenticated';
 
 const routerUser = Router();
 const userController = new UserController();
-const authController = new AuthController();
+
 
 routerUser.post('/user', userController.create);
-routerUser.post('/auth', authController.login);
+
+routerUser.use(authenticated);
+
+routerUser.put('/user/:id', userController.update);
 
 export default routerUser;

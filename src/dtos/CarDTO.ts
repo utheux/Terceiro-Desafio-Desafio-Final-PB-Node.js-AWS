@@ -14,6 +14,6 @@ export default class CreateCarDTO {
         this.year = car.year;
         this.valuePerDay = car.valuePerDay;
         this.acessories = car.acessories;
-        this.numberOfPassengers = this.numberOfPassengers;
+        this.numberOfPassengers = car.numberOfPassengers;
     }
 }
