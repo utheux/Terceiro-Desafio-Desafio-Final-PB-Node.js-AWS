@@ -10,6 +10,8 @@ routerUser.post('/user', userController.create);
 
 routerUser.use(authenticated);
 
-routerUser.put('/user/:id', userController.update);
+routerUser.put('/user', userController.update);
+routerUser.delete('/user', userController.delete);
+routerUser.get('/user', userController.getById);
 
 export default routerUser;
