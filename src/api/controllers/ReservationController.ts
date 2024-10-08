@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
 import CreateReservationService from '../services/reservationServices/CreateReservationService';
 import UpdateReservationService from '../services/reservationServices/UpdateReservationService';
-import ShowReserveIdService from '../services/reservationServices/ShowReserveIdService';
+import ShowReserveIdService from '../services/reservationServices/ShowReservationIdService';
+import DeleteReservationService from '../services/reservationServices/DeleteReservationService';
+import ListReservationService from '../services/reservationServices/ListReservationsService';
 
 interface AuthenticatedRequest extends Request {
     userId?: number;
@@ -45,10 +47,12 @@ class ReservationController{
 
     public async getById(request: AuthenticatedRequest, response: Response): Promise<Response> {
         try {
-            const {id} = request.params;
+            const id = Number(request.params.id);
+            const userId = Number(request.userId);
+
             const getReservation = new ShowReserveIdService();
 
-            const reservation = await getReservation.execute(Number(id));
+            const reservation = await getReservation.execute({userId, id});
 
             return response.status(200).json(reservation);
 
@@ -57,6 +61,36 @@ class ReservationController{
         } catch(error) {
             return response.status(400).json({erro: error.message});
         }
+    }
+
+    public async delete(request: AuthenticatedRequest, response: Response): Promise<Response> {
+        try {
+            const id = Number(request.params.id);
+            const userId = Number(request.userId);
+            const deleteReservationService = new DeleteReservationService();
+
+            await deleteReservationService.execute({userId, id});
+
+            return response.status(204).send();
+
+
+        } catch(error) {
+            return response.status(400).json({erro: error.message});
+        }
+    }
+
+    public async list(request: AuthenticatedRequest, response: Response): Promise<Response> {
+        const userId = Number(request.userId);
+        const listReservations = new ListReservationService();
+
+        try {
+            const reservations = await listReservations.execute(userId);
+
+            return response.status(200).json(reservations);
+        } catch(error) {
+            return response.status(400).json({erro: error.message});
+        }
+
     }
 }
 
