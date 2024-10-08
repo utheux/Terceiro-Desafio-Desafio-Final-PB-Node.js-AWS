@@ -28,7 +28,7 @@ git clone https://github.com/utheux/Terceiro-Desafio-Desafio-Final-PB-Node.js-AW
   npm run dev
 ```
 
-2. A API estará disponivel no endereço em:
+2. A API estará disponível no endereço:
 
 ```http
 http://localhost:3000
