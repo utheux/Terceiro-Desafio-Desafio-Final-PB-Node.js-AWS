@@ -391,6 +391,17 @@
         "tags": [
           "User"
         ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "Token JWT do usuário autenticado",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Lista de usuários",
@@ -411,6 +422,17 @@
         "summary": "Atualizar informações de um usuário",
         "tags": [
           "User"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "Token JWT do usuário autenticado",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "requestBody": {
           "required": true,
@@ -442,12 +464,12 @@
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
+            "name": "Authorization",
+            "in": "header",
             "required": true,
-            "description": "ID do usuário a ser deletado",
+            "description": "Token JWT do usuário autenticado",
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           }
         ],
@@ -507,6 +529,17 @@
         "tags": [
           "Reserve"
         ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "Token JWT do usuário autenticado",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -553,6 +586,17 @@
         "tags": [
           "Reserve"
         ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "Token JWT do usuário autenticado",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Lista de reservas",
@@ -574,6 +618,15 @@
           "Reserve"
         ],
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "Token JWT do usuário autenticado",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "id",
             "in": "path",
@@ -604,37 +657,12 @@
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
+            "name": "Authorization",
+            "in": "header",
             "required": true,
-            "description": "ID da reserva a ser atualizada",
-            "schema": {
-              "type": "integer"
-            }
+            "description": "Token JWT do usuário autenticado"
           }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Reservation"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Reserva atualizada com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Reservation"
-                }
-              }
-            }
-          }
-        }
+        ]
       }
     }
   }
