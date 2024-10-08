@@ -1,4 +1,4 @@
-import {GetCepService, Address} from '../../src/services/GetCepService';
+import {GetCepService, Address} from '../../src/api/services/GetCepService';
 
 global.fetch = jest.fn();
 

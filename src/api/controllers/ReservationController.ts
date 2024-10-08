@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import CreateReservationService from '../services/reservationServices/CreateReservationService';
+import UpdateReservationService from '../services/reservationServices/UpdateReservationService';
+import ShowReserveIdService from '../services/reservationServices/ShowReserveIdService';
 
 interface AuthenticatedRequest extends Request {
     userId?: number;
@@ -20,6 +22,40 @@ class ReservationController{
         } catch (error) {
             return response.status(400).json({erro: error.message});
 
+        }
+    }
+
+    public async update(request: AuthenticatedRequest, response: Response): Promise<Response>{
+        try{
+            const { startDate, endDate, carId } = request.body;
+            const reserveId = Number(request.params.id);
+            const updateReservationService = new UpdateReservationService();
+
+
+            const reservation = await updateReservationService.execute({reserveId, startDate, endDate, carId});
+
+
+            return response.status(201).json(reservation);
+
+        } catch (error) {
+            return response.status(400).json({erro: error.message});
+
+        }
+    }
+
+    public async getById(request: AuthenticatedRequest, response: Response): Promise<Response> {
+        try {
+            const {id} = request.params;
+            const getReservation = new ShowReserveIdService();
+
+            const reservation = await getReservation.execute(Number(id));
+
+            return response.status(200).json(reservation);
+
+
+
+        } catch(error) {
+            return response.status(400).json({erro: error.message});
         }
     }
 }
